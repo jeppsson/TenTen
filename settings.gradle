@@ -1,0 +1,2 @@
+include ':computer'
+rootProject.name='TenTen'
