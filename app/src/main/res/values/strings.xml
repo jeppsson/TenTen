@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">TenTen</string>
+    <string name="hex_32">0x%08x</string>
+    <string name="hex_16">%s 0x%04x</string>
+    <string name="output">%s\n%s</string>
+</resources>

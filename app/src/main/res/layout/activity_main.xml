@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="jp.jeppsson.computer.ComputerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <ImageButton
+            android:id="@+id/btn_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="step"
+            android:onClick="@{viewmodel::executeOneTick}"
+            android:src="@drawable/ic_skip_next_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.stackPointer}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/btn_step"
+            app:layout_constraintTop_toBottomOf="@id/btn_step" />
+
+        <TextView
+            android:id="@+id/txt_pc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.programCounter}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/btn_step"
+            app:layout_constraintTop_toBottomOf="@id/txt_sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_stack"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toTopOf="@id/card_output"
+            app:layout_constraintEnd_toStartOf='@id/btn_step'
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/stack"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:submitStack="@{viewmodel.stack}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_output"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf='@id/btn_step'
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_stack">
+
+            <TextView
+                android:id="@+id/txt_output"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="5dp"
+                android:text="@{viewmodel.output}" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
